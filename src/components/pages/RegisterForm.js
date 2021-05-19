@@ -8,10 +8,11 @@ const RegisterForm = (props) => {
     showInfo,
     errors,
     updateInputValues,
-    validateRegisterDetails,
     registerHandler,
     passwordShowHide,
+    isValidate,
     showPasswordStrength,
+    pwdStrenth,
   } = props;
   const { fullName, username, email, password, cf_password } = data;
   return (
@@ -27,7 +28,7 @@ const RegisterForm = (props) => {
             name="fullName"
             value={fullName}
             onChange={updateInputValues}
-            onBlur={validateRegisterDetails}
+            onBlur={() => isValidate()}
           />
           {errors && <small style={{ color: "red" }}>{errors.fullName}</small>}
         </div>
@@ -42,7 +43,7 @@ const RegisterForm = (props) => {
             name="username"
             value={username}
             onChange={updateInputValues}
-            onBlur={validateRegisterDetails}
+            onBlur={() => isValidate()}
           />
           {errors && <small style={{ color: "red" }}>{errors.username}</small>}
         </div>
@@ -57,7 +58,7 @@ const RegisterForm = (props) => {
             name="email"
             value={email}
             onChange={updateInputValues}
-            onBlur={validateRegisterDetails}
+            onBlur={() => isValidate()}
           />
           {errors && <small style={{ color: "red" }}>{errors.email}</small>}
         </div>
@@ -73,7 +74,7 @@ const RegisterForm = (props) => {
             id="password"
             value={password}
             onChange={updateInputValues}
-            onBlur={validateRegisterDetails}
+            onBlur={() => isValidate()}
           />
           {errors && <small style={{ color: "red" }}>{errors.password}</small>}
         </div>
@@ -88,7 +89,7 @@ const RegisterForm = (props) => {
             name="cf_password"
             value={cf_password}
             onChange={updateInputValues}
-            onBlur={validateRegisterDetails}
+            onBlur={() => isValidate()}
           />
           {errors && (
             <small style={{ color: "red" }}>{errors.cf_password}</small>
@@ -98,6 +99,7 @@ const RegisterForm = (props) => {
             showPwd={showPwd}
             showPasswordStrength={showPasswordStrength}
             showInfo={showInfo}
+            pwdStrenth={pwdStrenth}
           />
         </div>
         <button className="btn btn-primary btn-block" onClick={registerHandler}>

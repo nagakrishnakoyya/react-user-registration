@@ -83,3 +83,7 @@ small.info-icon {
 input.validated {
   border-color: green;
 }
+ul li.completed {
+  color: green;
+  text-decoration: line-through;
+}

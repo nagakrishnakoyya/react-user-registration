@@ -19,20 +19,29 @@ const Register = ({ setAuth }) => {
   const [showInfo, setShowInfo] = useState(false);
 
   // Custom hook
-  const { errorMsg: errors, setErrors, isValidate } = useValidation(data);
+  const {
+    errorMsg: errors,
+    setErrors,
+    isValidate,
+    pwdStrenth,
+    validatePasswordStrength,
+  } = useValidation(data);
   const histoty = useHistory();
   const token = uuidv4();
   // Update state
   const updateInputValues = (e) => {
-    const { name, value } = e.target;
+    const { name, value, id } = e.target;
     setData({ ...data, [name]: value });
+    if (id === "password") {
+      validatePasswordStrength(value);
+    }
     setErrors({});
   };
 
   // onBlur
-  const validateRegisterDetails = () => {
-    isValidate();
-  };
+  // const validateRegisterDetails = () => {
+  //   isValidate();
+  // };
 
   // Register method
   const registerHandler = () => {
@@ -64,12 +73,14 @@ const Register = ({ setAuth }) => {
     showInfo,
     errors,
     updateInputValues,
-    validateRegisterDetails,
     registerHandler,
     passwordShowHide,
+    isValidate,
     showPasswordStrength,
+    pwdStrenth,
   };
 
+  console.log("pwdStrenth", pwdStrenth);
   // JSX
   return (
     <>
